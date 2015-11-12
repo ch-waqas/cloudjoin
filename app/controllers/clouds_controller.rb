@@ -16,6 +16,7 @@ class CloudsController < ApplicationController
   end
 
   def validate
+    
   end
 
   def new
