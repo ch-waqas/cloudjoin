@@ -1,0 +1,596 @@
+<script type="text/javascript">
+  <% if current_user.present? %>
+  <% else %>
+    var d = document.getElementById("homep");
+    d.className = d.className + " active";
+  <% end %>
+
+  $(document).ready(function(){
+    $('#myTable').DataTable();
+  });
+</script>
+
+<% if current_user.present? %>
+ 
+ <h1>MY FILES</h1> 
+
+<br/>
+<table id="myTable" class="hover" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Connected At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Email</th>
+                <th>Connected At</th>
+                <th>Actions</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td><%= link_to "Delete", 'javascript:void(0);', :class => "btn btn-danger" %></td>
+            </tr>
+            <tr>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+            </tr>
+            <tr>
+                <td>Ashton Cox</td>
+                <td>Junior Technical Author</td>
+                <td>San Francisco</td>
+            </tr>
+            <tr>
+                <td>Cedric Kelly</td>
+                <td>Senior Javascript Developer</td>
+                <td>Edinburgh</td>
+            </tr>
+            <tr>
+                <td>Airi Satou</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+            </tr>
+            <tr>
+                <td>Brielle Williamson</td>
+                <td>Integration Specialist</td>
+                <td>New York</td>
+            </tr>
+            <tr>
+                <td>Herrod Chandler</td>
+                <td>Sales Assistant</td>
+                <td>San Francisco</td>
+            </tr>
+            <tr>
+                <td>Rhona Davidson</td>
+                <td>Integration Specialist</td>
+                <td>Tokyo</td>
+            </tr>
+            <tr>
+                <td>Colleen Hurst</td>
+                <td>Javascript Developer</td>
+                <td>San Francisco</td>
+            </tr>
+            <tr>
+                <td>Sonya Frost</td>
+                <td>Software Engineer</td>
+                <td>Edinburgh</td>
+            </tr>
+            <tr>
+                <td>Jena Gaines</td>
+                <td>Office Manager</td>
+                <td>London</td>
+            </tr>
+            <tr>
+                <td>Quinn Flynn</td>
+                <td>Support Lead</td>
+                <td>Edinburgh</td>
+            </tr>
+            <tr>
+                <td>Charde Marshall</td>
+                <td>Regional Director</td>
+                <td>San Francisco</td>
+            </tr>
+            <tr>
+                <td>Haley Kennedy</td>
+                <td>Senior Marketing Designer</td>
+                <td>London</td>
+            </tr>
+            <tr>
+                <td>Tatyana Fitzpatrick</td>
+                <td>Regional Director</td>
+                <td>London</td>
+            </tr>
+            <tr>
+                <td>Michael Silva</td>
+                <td>Marketing Designer</td>
+                <td>London</td>
+            </tr>
+            <tr>
+                <td>Paul Byrd</td>
+                <td>Chief Financial Officer (CFO)</td>
+                <td>New York</td>
+            </tr>
+            <tr>
+                <td>Gloria Little</td>
+                <td>Systems Administrator</td>
+                <td>New York</td>
+            </tr>
+            <tr>
+                <td>Bradley Greer</td>
+                <td>Software Engineer</td>
+                <td>London</td>
+            </tr>
+            <tr>
+                <td>Dai Rios</td>
+                <td>Personnel Lead</td>
+                <td>Edinburgh</td>
+            </tr>
+            <tr>
+                <td>Jenette Caldwell</td>
+                <td>Development Lead</td>
+                <td>New York</td>
+            </tr>
+            <tr>
+                <td>Yuri Berry</td>
+                <td>Chief Marketing Officer (CMO)</td>
+                <td>New York</td>
+            </tr>
+        </tbody>
+    </table>
+<% else %>
+
+<div class="masthead">
+      
+      <div class="container">
+            <!-- starts carousel -->
+
+        <div id="masthead-carousel" class="carousel masthead-carousel slide">
+          <div class="carousel-inner">
+
+            <div class="item active">
+
+              <div class="row">
+
+                <div class="col-md-6 masthead-text animated fadeInDownBig">
+                  <h1 class="masthead-title">Don't feel limited to Cloud storage.</h1>
+
+                  <p class="masthead-">
+                  Now all of your clouds are joined together to give ease of access and make you free of multiple accounts. Your clouds are joined, secured & managed behind Thundercloud now. Just login once and enjoy more space without cost.
+                  </p>
+
+                  <br>
+
+                  <div class="masthead-actions">
+                    <a href="<%= howto_home_index_path %>" class="btn btn-transparent btn-jumbo">
+                    Learn More
+                    </a>
+
+                    <a href="<%= new_user_registration_path %>" class="btn btn-info btn-jumbo">
+                    Create an Account
+                    </a>
+                  </div> <!-- /.masthead-actions -->
+                </div> <!-- /.masthead-text -->
+
+                <div class="col-md-6 masthead-img animated fadeInUpBig">
+                  <img src="/assets/masthead/mobile.png" alt="slide2" class="img-responsive" />     
+                </div> <!-- /.masthead-img -->
+
+              </div> <!-- /.row -->
+
+            </div> <!-- /.item -->
+
+            <div class="item"><!--2nd slided page-->
+
+              <div class="row">
+           
+                <div class="col-md-6 masthead-text animated fadeInLeftBig">
+                  
+
+
+
+     <div class="col-md-5 masthead-img animated pulse">
+          <img src="/assets/masthead/cloud.png" alt="slide2" class="img-responsive" />     
+     </div>
+                  <h1 class="masthead-title">We join all clouds with perfection...</h1>
+
+                 <!-- <p class="masthead-">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisi ut aliquip ex ea commodo consequat.
+                  </p>-->
+
+                  </br></br></br>
+
+                 <div class="masthead-actions">
+                    <a href="javascript:void(0);" class="btn btn-transparent btn-jumbo">
+                    Learn More
+                    </a>
+
+                    <a href="<%= new_user_registration_path %>" class="btn btn-info btn-jumbo">
+                    Create an Account
+                    </a>
+                  </div> <!-- /.masthead-actions -->
+                </div> <!-- /.masthead-text -->
+
+                <div class="col-md-6 masthead-img animated fadeInRightBig">
+                  <form class="form masthead-form well">
+
+                    <h3 class="text-center">Come & join us.. Its Free!</h3>
+
+                    <p class="text-center">We Provide free & safe service to make values for you. </p>
+
+                    <br>
+
+                    
+
+                    <div class="form-group">
+                      <a href="<%= new_user_registration_path %>" class="btn btn-secondary btn-jumbo btn-block">Get Started Today!</a>
+                    </div> <!-- /.form-group -->
+
+                  </form>     
+                </div> <!-- /.masthead-img -->
+
+              </div> <!-- /.row -->
+
+            </div> <!-- /.item -->
+
+            <div class="item">
+
+              <div class="row">
+                
+                <div class="col-md-6 masthead-text animated fadeInUpBig">
+                  <h1 class="masthead-title">Best ever free & safe services.</h1>
+
+                  <p class="masthead-">
+                  Thundercloud team working best to provide safe secure and easy platform for our users.Stay tuned for more apps.
+                  </p>
+    
+                  <br>
+
+                  <div class="masthead-actions">
+                    <a href="javascript:void(0);" class="btn btn-transparent btn-jumbo">
+                    Learn More
+                    </a>
+
+                    <a href="<%= new_user_registration_path %>" class="btn btn-info btn-jumbo">
+                    Create an Account
+                    </a>
+                  </div><!-- /.masthead-actions -->
+                </div> <!-- /.masthead-text -->
+
+                <div class="col-md-6 masthead-img animated pulse">
+                  <img src="/assets/masthead/ipad.png" alt="slide2" class="img-responsive" />     
+                </div> <!-- /.masthead-img -->
+
+              </div> <!-- /.row -->
+
+            </div> <!-- /.item -->
+
+            <div class="item">
+
+              <div class="row">
+
+                <div class="col-md-6 masthead-text animated fadeInDownBig">
+                  <h1 class="masthead-title">Soon our mobile app will also be launched. cheers!!</h1>
+
+                  <p class="masthead-">
+                  Wanna know more about IDEASOFT ? see video what we are and what wanna do next.
+                  </p><!--video area editing section-->
+
+                  <br>
+
+                  <div class="masthead-actions">
+                    <a href="javascript:void(0);" class="btn btn-transparent btn-jumbo">
+                    Learn More
+                    </a>
+
+                    <a href="<%= new_user_registration_path %>" class="btn btn-info btn-jumbo">
+                    Create an Account
+                    </a>
+                  </div> <!-- /.masthead-actions -->
+                </div> <!-- /.masthead-text -->
+
+                <div class="col-md-6 masthead-img animated fadeInUpBig">
+                  <iframe src="http://player.vimeo.com/video/57175742?title=0&amp;byline=0&amp;portrait=0&amp;color=e2007a" style="width: 85%; height: 325px;"></iframe>
+    
+                </div> <!-- /.masthead-img -->
+
+              </div> <!-- /.row -->
+
+            </div> <!-- /.item -->
+
+          </div>  <!-- /.carousel-inner -->
+          <!-- Carousel nav -->
+
+          <div class="carousel-controls">
+            <a class="carousel-control left" href="#masthead-carousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#masthead-carousel" data-slide="next">&rsaquo;</a>
+          </div>
+            
+        </div> <!-- /.masthead-carousel -->
+
+        </div>
+
+    </div> <!-- /.masthead -->
+
+
+
+    <div class="content">
+
+      <div class="container">
+
+        <h4 class="content-title">
+          <span>Why Choose Thundercloud?</span>
+        </h4>
+
+        <br>
+
+        <div class="row">
+
+          <div class="mini-feature">
+            <i class="glyphicon glyphicon-globe mini-feature-icon text-secondary pull-left" ></i>
+
+            <div class="mini-feature-text">
+              <h5 class="mini-feature-title">Wide Browser Support</h5>            
+              <p>Our Sites are designed to display well on most modern devices, including desktops, tablets, and mobile devices. </p>
+            </div>
+          </div> <!-- /.mini-feature -->
+
+          <div class="mini-feature">
+            <i class="glyphicon glyphicon-dashboard mini-feature-icon text-secondary pull-left"></i>
+
+            <div class="mini-feature-text">
+              <h5 class="mini-feature-title">Responsiveness</h5>
+
+              <p>Our Sites are well coded and can be accessed very quickly at any platform. </p>
+            </div>
+          </div> <!-- /.mini-feature -->
+
+          <div class="mini-feature">
+            <i class="glyphicon glyphicon-hand-right mini-feature-icon text-secondary pull-left"></i>
+
+            <div class="mini-feature-text">
+              <h5 class="mini-feature-title">Linux &amp; Ruby on Rails</h5>
+
+              <p>Built using Ruby on Rails secure platform, our users data and information is more than secure at this platform even developers dont have access to sensitive info.</p>
+            </div>
+          </div> <!-- /.mini-feature -->
+
+        </div> <!-- /.row -->
+
+        
+        <div class="row-divider"></div> <!-- /.row-divider -->
+
+
+        <div class="row">
+
+          <div class="col-sm-6 col-sm-push-6">
+            
+            <h4 class="content-title">
+              <span>About Ideasoft</span>
+            </h4>
+
+            <p>We are a company that provides IT solutions & Nice software products. Our primary goal is to combine creativity and experience to develop and deliver quality Information Technology solutions.</p>
+
+            <br>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <ul class="icons-list">
+                  <li>
+                    <i class="icon-li glyphicon glyphicon-check text-primary"></i>
+                    Add or remove clouds safely
+                  </li>
+                  <li>
+                    <i class="icon-li glyphicon glyphicon-check text-primary"></i>
+                    Add or remove files
+                  </li>
+                  <li>
+                    <i class="icon-li glyphicon glyphicon-check text-primary"></i>
+                    Completely Free no cost
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-sm-6">
+                <ul class="icons-list">
+                  <li>
+                    <i class="icon-li glyphicon glyphicon-check text-primary"></i>
+                    Single user password
+                  </li>
+                  <li>
+                    <i class="icon-li glyphicon glyphicon-check text-primary"></i>
+                    direct link to actual cloud
+                  </li>
+                  <li>
+                    <i class="icon-li glyphicon glyphicon-check text-primary"></i>
+                    No in between storage
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <a href="javascript:;" class="btn btn-default">Get More apps Today</a>
+
+            <br><br><br>
+
+          </div> <!-- /.col -->
+
+
+          
+          <div class="col-sm-6 col-sm-pull-6 text-center">
+
+            <br><br>
+
+            <img src="/assets/devices/macbook.png" class="img-responsive" alt="Macbook">       
+            
+          </div> <!-- /.col -->
+
+        </div> <!-- /.row -->
+
+
+        
+        <div class="row-divider"></div> <!-- /.row-divider -->
+
+
+
+        <div class="row">
+          
+          <div class="col-sm-6">
+
+            <h4 class="content-title">
+              <span>Latest News</span>
+            </h4>
+
+            <div class="recent-news">
+            
+              <div class="recent-news-item clearfix"><div class="recent-news-item-date">13<span>Jan</span></div>
+                <div class="recent-news-item-description">
+                  <h5 class="recent-news-item-title"><a href="http://inovado.mintithemes.com/this-is-a-standard-post/" title="This is a Standard Post">Cloud Status available now</a></h5>
+                  <span class="recent-news-item-comments">7 Comments</span>
+                  <div class="recent-news-item-excerpt">Admin & thundercloud team says that now users can see status of there clouds more clearly. This feature was not available previously.More exciting features are being added.<!-- <a href="http://inovado.mintithemes.com/this-is-a-standard-post/" class="recent-news-item-more">Read More →</a> --></div>
+                </div>
+              </div> <!-- /.recent-news-item -->
+
+              <div class="recent-news-item clearfix"><div class="recent-news-item-date">04<span>Jan</span></div>
+                <div class="recent-news-item-description">
+                  <h5 class="recent-news-item-title"><a href="http://inovado.mintithemes.com/this-is-a-standard-post/" title="This is a Standard Post">Error in join removed</a></h5>
+                  <span class="recent-news-item-comments">2 Comments</span>
+                  <div class="recent-news-item-excerpt">All the errors that were being faced by valued users are completely removed. Now everyone can use cloud easily. <!-- <a href="http://inovado.mintithemes.com/this-is-a-standard-post/" class="recent-news-item-more">Read More →</a> --></div>
+                </div>
+              </div> <!-- /.recent-news-item -->
+
+            </div> <!-- /.recent-news -->
+
+            <br class="visible-xs">
+
+          </div> <!-- /.col -->
+
+
+
+          <div class="col-sm-6">
+              
+            <h4 class="content-title">
+              <span>Testimonials</span>
+
+              <a class="btn btn-default btn-sm carousel-prev" href="#clients-carousel" data-slide="prev">&lsaquo;</a>
+              <a class="btn btn-default btn-sm carousel-next" href="#clients-carousel" data-slide="next">&rsaquo;</a>
+            </h4>
+
+            <div id="clients-carousel" class="carousel slide" data-interval="0">
+              <div class="carousel-inner">
+
+                <div class="item active">
+
+                  <div class="testimonial">
+
+                    <p class="testimonial-text"><!--person comment line-->
+                    I added my 5 accounts through thundercloud and really found this helpfull. website works awesome but we really need an app for our mobile phones to access our files more easily.
+                    </p>
+
+                    <div class="testimonials-arrow"></div>
+
+                    <div class="testimonial-author">
+                      <div class="testimonial-image"><img alt="" src="/assets/avatars/avatar-1-lg.jpg"></div>
+
+                      <div class="testimonial-author-info">
+                        <h5><a href="javascript:void(0);">Rod Howard</a></h5> Jumpstart Organization
+                      </div>
+                    </div>
+                  </div> <!-- /.testimonial -->
+
+                </div> <!-- /.item -->
+
+                <div class="item">
+
+                  <div class="testimonial">
+
+                    <p class="testimonial-text">
+                    Added bunch of my cloud accounts.My experience is good. Altough this organization is new in market but there work is great and secure indeed.Best of luck others.
+                    </p>
+
+                    <div class="testimonials-arrow"></div>
+
+                    <div class="testimonial-author">
+                      <div class="testimonial-image"><img alt="" src="/assets/avatars/avatar-2-lg.jpg"></div>
+
+                      <div class="testimonial-author-info">
+                        <h5><a href="#">Nikita Williams</a></h5> Nikita Chanel
+                      </div>
+                    </div>
+                  </div> <!-- /.testimonial -->
+
+                </div> <!-- /.item -->
+
+              </div> <!-- /.carousel-inner -->
+
+            </div> <!-- /.carousel -->
+
+          </div> <!-- /.col -->
+
+        </div> <!-- /.row -->
+
+
+        
+        <div class="row-divider"></div> <!-- /.row-divider -->
+
+
+        <div class="carousel-container">
+        <div class="row">
+
+          <div class="col-sm-12">
+
+            <h4 class="content-title">
+              <span>See Our Clients</span>
+
+              <a class="btn btn-default btn-sm carousel-prev" href="#" data-slide="prev">&lsaquo;</a>
+              <a class="btn btn-default btn-sm carousel-next" href="#" data-slide="next">&rsaquo;</a>
+            </h4>
+
+            <ul class="clients-list">
+              <li>
+                <img src="/assets/clients/logo1-grayscale.png" class="img-responsive" alt="Client Logo">
+              </li>
+              <li>
+                <img src="/assets/clients/logo2-grayscale.png" class="img-responsive" alt="Client Logo">
+              </li>
+              <li>
+                <img src="/assets/clients/logo3-grayscale.png" class="img-responsive" alt="Client Logo">
+              </li>
+              <li>
+                <img src="/assets/clients/logo4-grayscale.png" class="img-responsive" alt="Client Logo">
+              </li>
+              <li>
+                <img src="/assets/clients/logo5-grayscale.png" class="img-responsive" alt="Client Logo">
+              </li>
+              <li>
+                <img src="/assets/clients/logo6-grayscale.png" class="img-responsive" alt="Client Logo">
+              </li>
+            </ul>
+
+            
+            
+          </div> <!-- /.col -->          
+
+        </div> <!-- /.row -->
+        </div> <!-- /.carousel-container -->
+
+
+        
+
+      </div> <!-- /.container -->   
+
+    </div> <!-- /.content -->
+
+
+
+
+</div> <!-- /#wrapper -->
+
+<% end %>
