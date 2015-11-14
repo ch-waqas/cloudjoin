@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.5'
-gem 'pg', '~>0.13.2'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -10,6 +10,7 @@ gem 'carrierwave-dropbox'
 gem 'skydrive'
 gem 'google_drive'
 gem 'devise'
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
