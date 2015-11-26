@@ -34,6 +34,13 @@ Clouder::Application.routes.draw do
     end
   end
 
+  get '/dropbox_authorize' => 'dropbox#authorize', as: 'dropbox_authorize'
+  get '/dropbox_unauthorize' => 'dropbox#unauthorize', as: 'dropbox_unauthorize'
+  get '/dropbox_path_change' => '#dropbox_path_change', as: 'dropbox_path_change'
+  get '/dropbox_callback' => 'dropbox#dropbox_callback', as: 'dropbox_callback'
+  get '/dropbox_download' => 'dropbox#dropbox_download', as: 'dropbox_download'
+  post '/dropbox_upload' => 'dropbox#upload', as: 'upload'
+  post '/dropbox_search' => 'dropbox#search', as: 'search'
   # Sample resource route with options:
   #   resources :products do
   #     member do
