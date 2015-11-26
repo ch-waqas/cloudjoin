@@ -6,8 +6,8 @@ gem 'rails', '3.2.5'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 
-gem 'carrierwave-dropbox'
 gem 'skydrive'
+gem 'dropbox-sdk'
 gem 'google_drive'
 gem 'devise'
 gem 'pg'
