@@ -6,17 +6,18 @@
     $('#myTable').DataTable();
   });
 </script>
-
-<% @client["contents"].each do |key, value| %>
-    <% if (key["is_dir"]) %>    
-        <%= ["path"][1..-1] %>
-    <%else %>
-        <%= key["path"][1..-1]%> &nbsp;  
+<% @clients.each_with_index do |client, i| %>
+    <h2> Account # <%= i+1 %> </h2>
+    <% client["contents"].each do |key, value| %>
+        <% if (key["is_dir"]) %>    
+            <%= key["path"][1..-1] %>
+        <%else %>
+            <%= key["path"][1..-1]%> &nbsp;  
+        <%end%>
+        <br/>
     <%end%>
-    <br/>
-<%end%>
-
-<%= link_to "Add New", new_cloud_path, :class => "btn btn-info pull-right" %>
+<% end %>
+    <%= link_to "Add New", new_cloud_path, :class => "btn btn-info pull-right" %>
 <h1>My Clouds</h1>
 <br/>
 <table id="myTable" class="hover" cellspacing="0" width="100%">

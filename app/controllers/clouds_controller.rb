@@ -4,12 +4,16 @@ class CloudsController < ApplicationController
   end
 
   def index
-     if current_user.dropbox_session
-       dbsession = DropboxSession.deserialize(current_user.dropbox_session)
-       # create the dropbox client object
-       @client = DropboxClient.new(dbsession, :dropbox).metadata('/')
+    @clients = []
+     if current_user.dropbox_accounts.present?            
+        current_user.dropbox_accounts.each do |account|
+           dbsession = DropboxSession.deserialize(account.session)
+           # create the dropbox client object
 
+           @clients << DropboxClient.new(dbsession, :dropbox).metadata('/')
       end
+    end
+
   end
 
   def edit

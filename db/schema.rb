@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151126060902) do
+ActiveRecord::Schema.define(:version => 20151126074052) do
 
   create_table "clouds", :force => true do |t|
     t.string   "email"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(:version => 20151126060902) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "dropbox_accounts", :force => true do |t|
+    t.string   "session"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "dropbox_accounts", ["user_id"], :name => "index_dropbox_accounts_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
@@ -36,7 +45,6 @@ ActiveRecord::Schema.define(:version => 20151126060902) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "dropbox_session"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
