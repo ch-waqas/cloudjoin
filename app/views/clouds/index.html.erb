@@ -7,6 +7,14 @@
   });
 </script>
 
+<% @client["contents"].each do |key, value| %>
+    <% if (key["is_dir"]) %>    
+        <%= ["path"][1..-1] %>
+    <%else %>
+        <%= key["path"][1..-1]%> &nbsp;  
+    <%end%>
+    <br/>
+<%end%>
 
 <%= link_to "Add New", new_cloud_path, :class => "btn btn-info pull-right" %>
 <h1>My Clouds</h1>
