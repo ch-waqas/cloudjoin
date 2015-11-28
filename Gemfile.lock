@@ -193,6 +193,7 @@ DEPENDENCIES
   dropbox-sdk
   google_drive
   jquery-rails
+  oauth2
   pg
   rails (= 3.2.5)
   sass-rails (~> 3.2.3)

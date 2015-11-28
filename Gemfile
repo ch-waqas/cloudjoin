@@ -11,6 +11,7 @@ gem 'dropbox-sdk'
 gem 'google_drive'
 gem 'devise'
 gem 'pg'
+gem 'oauth2'
 
 # Gems used only for assets and not required
 # in production environments by default.

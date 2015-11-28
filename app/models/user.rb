@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :dropbox_accounts
+  has_many :google_accounts
 
   def set_session_value(val)
   	dropbox_accounts << DropboxAccount.create(session: val)
