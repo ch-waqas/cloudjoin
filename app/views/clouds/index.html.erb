@@ -6,20 +6,52 @@
     $('#myTable').DataTable();
   });
 </script>
-<% @clients.each_with_index do |client, i| %>
-    <h2> Account # <%= i+1 %> </h2>
-    <% client["contents"].each do |key, value| %>
-        <% if (key["is_dir"]) %>    
-            <%= key["path"][1..-1] %>
-        <%else %>
-            <%= key["path"][1..-1]%> &nbsp;  
-        <%end%>
-        <br/>
-    <%end%>
-<% end %>
-    <%= link_to "Add New", new_cloud_path, :class => "btn btn-info pull-right" %>
+
+    <%#= link_to "Add New", new_cloud_path, :class => "btn btn-info pull-right" %>
+    <%= link_to "Connect to Dropbox", dropbox_authorize_path, {:class => "dropbox-connect btn btn-success pull-right"} %>
+
 <h1>My Clouds</h1>
 <br/>
+
+<% @clients.each_with_index do |client, i| %>
+    <h2> Account # <%= i+1 %> </h2>
+    <table id="myTable" class="hover" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>File Name</th>
+                <th>Actions</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <% client["contents"].each do |key, value| %> 
+                <tr>
+                    <td>
+                        <% if (key["is_dir"]) %>    
+                            <%= key["path"][1..-1] %>
+                        <% else %>
+                            <%= key["path"][1..-1]%> &nbsp;  
+                        <% end %>
+                    </td>
+                    <td>
+                        <!-- Actions -->
+                        <%= form_tag(dropbox_download_path, method: :get) do %>
+                            <%= hidden_field_tag 'path', key["path"][1..-1] %>
+                            <%= submit_tag 'Download' %>
+                        <% end %>
+                    </td>
+                </tr>
+            <%end%>
+        </tbody>
+    </table>
+<% end %>
+
+<!-- 
 <table id="myTable" class="hover" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -39,7 +71,7 @@
             <tr>
                 <td>Tiger Nixon</td>
                 <td>System Architect</td>
-                <td><%= link_to "Delete", 'javascript:void(0);', :class => "btn btn-danger" %></td>
+                <td><%#= link_to "Delete", 'javascript:void(0);', :class => "btn btn-danger" %></td>
             </tr>
             <tr>
                 <td>Garrett Winters</td>
@@ -147,4 +179,4 @@
                 <td>New York</td>
             </tr>
         </tbody>
-    </table>
+    </table> -->

@@ -28,6 +28,13 @@ class DropboxController < ApplicationController
 		redirect_to clouds_path 
 	end # end of dropbox_callback action
 
+
+	def dropbox_download
+		puts '11211212-----'
+		dbsession = current_user.dropbox_accounts.first.session
+		redirect_to DropboxClient.new(dbsession, DROPBOX_APP_MODE).shares(params[:path])["url"]
+	end
+
 	# def unauthorize
 	# 	session[:dropbox_session] = nil
 	# 	current_user.dropbox_session = nil

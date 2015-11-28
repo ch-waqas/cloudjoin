@@ -1,6 +1,15 @@
 Clouder::Application.routes.draw do
   
   
+  
+  get 'dropbox/authorize' => 'dropbox#authorize', as: 'dropbox_authorize'
+  # get '/dropbox_unauthorize' => 'dropbox#unauthorize', as: 'dropbox_unauthorize'
+  # get '/dropbox_path_change' => '#dropbox_path_change', as: 'dropbox_path_change'
+  get 'dropbox/callback' => 'dropbox#dropbox_callback', as: 'dropbox_callback'
+  get '/dropbox_download' => 'dropbox#dropbox_download', as: 'dropbox_download'
+  # post '/dropbox_upload' => 'dropbox#upload', as: 'upload'
+  # post '/dropbox_search' => 'dropbox#search', as: 'search'
+
   devise_for :users, path: '', path_names: {sign_up: "signup", sign_in: "login", sign_out: "logout"}
 
   # The priority is based upon order of creation:
@@ -34,13 +43,6 @@ Clouder::Application.routes.draw do
     end
   end
 
-  get 'dropbox/authorize' => 'dropbox#authorize', as: 'dropbox_authorize'
-  # get '/dropbox_unauthorize' => 'dropbox#unauthorize', as: 'dropbox_unauthorize'
-  # get '/dropbox_path_change' => '#dropbox_path_change', as: 'dropbox_path_change'
-  get 'dropbox/callback' => 'dropbox#dropbox_callback', as: 'dropbox_callback'
-  # get '/dropbox_download' => 'dropbox#dropbox_download', as: 'dropbox_download'
-  # post '/dropbox_upload' => 'dropbox#upload', as: 'upload'
-  # post '/dropbox_search' => 'dropbox#search', as: 'search'
   # Sample resource route with options:
   #   resources :products do
   #     member do
