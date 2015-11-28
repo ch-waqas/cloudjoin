@@ -7,6 +7,7 @@ Clouder::Application.routes.draw do
   # get '/dropbox_path_change' => '#dropbox_path_change', as: 'dropbox_path_change'
   get 'dropbox/callback' => 'dropbox#dropbox_callback', as: 'dropbox_callback'
   get '/dropbox_download' => 'dropbox#dropbox_download', as: 'dropbox_download'
+  post '/dropbox_upload' => 'dropbox#dropbox_upload', as: 'dropbox_upload'
   # post '/dropbox_upload' => 'dropbox#upload', as: 'upload'
   # post '/dropbox_search' => 'dropbox#search', as: 'search'
 

@@ -29,6 +29,24 @@ class DropboxController < ApplicationController
 	end # end of dropbox_callback action
 
 
+	def dropbox_upload
+		id = params[:account_id]
+		account = current_user.dropbox_accounts.find(id)
+		dbsession = DropboxSession.deserialize(account.session)
+		uploaded_io = params[:upload_file]
+
+		client = DropboxClient.new(dbsession, DROPBOX_APP_MODE)
+		File.open(Rails.root.join('public', uploaded_io.original_filename), 'wb') do |file|
+			file.write(uploaded_io.read)
+		end
+
+		file = File.open(Rails.root.join('public', uploaded_io.original_filename), "r")
+		client.put_file( uploaded_io.original_filename, file)
+
+		flash[:success] =  'Yahooo'
+		redirect_to clouds_path
+	end
+
 	def dropbox_download
 		puts '11211212-----'
 		id = params[:account_id]
