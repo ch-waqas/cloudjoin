@@ -3,7 +3,7 @@
   d.className = d.className + " active";
 
   $(document).ready(function(){
-    $('#myTable').DataTable();
+    $('.myTable').DataTable();
   });
 </script>
 
@@ -15,33 +15,38 @@
 
 <% @clients.each_with_index do |client, i| %>
     <h2> Account # <%= i+1 %> </h2>
-    <table id="myTable" class="hover" cellspacing="0" width="100%">
+    <table id="" class="hover myTable" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>File Name</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Type</th>
+                <th>Path</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
                 <th>File Name</th>
+                <th>Size</th>
+                <th>Type</th>
+                <th>Path</th>
                 <th>Actions</th>
             </tr>
         </tfoot>
         <tbody>
-            <% client["contents"].each do |key, value| %> 
+            <% @files[i].each do |file| %>
                 <tr>
-                    <td>
-                        <% if (key["is_dir"]) %>    
-                            <%= key["path"][1..-1] %>
-                        <% else %>
-                            <%= key["path"][1..-1]%> &nbsp;  
-                        <% end %>
-                    </td>
+                    <td><%= file['name'] %></td>
+                    <td><%= file['size'] %></td>
+                    <td><%= file['mime_type'] %></td>
+                    <td><%= file['path'][1..-1] %></td>
                     <td>
                         <!-- Actions -->
                         <%= form_tag(dropbox_download_path, method: :get) do %>
-                            <%= hidden_field_tag 'path', key["path"][1..-1] %>
+                            <%= hidden_field_tag 'name', file['name'] %>
+                            <%= hidden_field_tag 'path', file['path'] %>
+                            <%= hidden_field_tag 'account_id', @accounts[i].id %>
                             <%= submit_tag 'Download' %>
                         <% end %>
                     </td>

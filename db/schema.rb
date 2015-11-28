@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20151126074052) do
 
-  create_table "clouds", :force => true do |t|
-    t.string   "email"
-    t.string   "access_token"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
   create_table "dropbox_accounts", :force => true do |t|
     t.string   "session"
     t.integer  "user_id"

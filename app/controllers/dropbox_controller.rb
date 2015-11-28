@@ -31,8 +31,21 @@ class DropboxController < ApplicationController
 
 	def dropbox_download
 		puts '11211212-----'
-		dbsession = current_user.dropbox_accounts.first.session
-		redirect_to DropboxClient.new(dbsession, DROPBOX_APP_MODE).shares(params[:path])["url"]
+		id = params[:account_id]
+		account = current_user.dropbox_accounts.find(id)
+		dbsession = DropboxSession.deserialize(account.session)
+		# dbsession = current_user.dropbox_accounts.first.session
+
+		require 'open-uri'
+
+		file_name = params[:name]
+		open(file_name, 'wb') do |file|
+			file << DropboxClient.new(dbsession, DROPBOX_APP_MODE).get_file(params[:path], rev=nil)
+		end
+
+		# file =  DropboxClient.new(dbsession, DROPBOX_APP_MODE).get_file(params[:path], rev=nil)
+		# puts "*** fiel #{file.inspect} params path #{params[:path]}"
+		send_file file_name
 	end
 
 	# def unauthorize
