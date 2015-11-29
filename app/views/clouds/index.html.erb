@@ -10,8 +10,6 @@
     <%#= link_to "Add New", new_cloud_path, :class => "btn btn-info pull-right" %>
     <%= link_to "Connect to Dropbox", dropbox_authorize_path, {:class => "dropbox-connect btn btn-success pull-right"} %>
 
-<h1>My Clouds</h1>
-<br/>
 
 <% @clients.each_with_index do |client, i| %>
     <h2> Account # <%= i+1 %> </h2>
@@ -35,7 +33,7 @@
         </thead>
         <tfoot>
             <tr>
-                <th>File Name</th>
+                <th>Name</th>
                 <th>Size</th>
                 <th>Type</th>
                 <th>Path</th>

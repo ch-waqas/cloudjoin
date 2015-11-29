@@ -1,48 +1,74 @@
 require 'google_drive'
 require 'google_docs'
 class DocumentsController < ApplicationController
-  before_filter :google_drive_login, :only => [:list_google_docs]
 
   GOOGLE_CLIENT_ID = "220658305464-4du2fg2t3q1b75gtnvaluij5ui9vm1u7.apps.googleusercontent.com"
   GOOGLE_CLIENT_SECRET = "Kn-VOsGkgLTKFf-iLTVZ87AP"
   GOOGLE_CLIENT_REDIRECT_URI = "http://localhost:3000/oauth2callback"
-  # you better put constant like above in environments file, I have put it just for simplicity
-  def list_google_docs
 
-    google_session = GoogleDrive.login_with_oauth(current_user.google_accounts.first.session)
-    # google_session = GoogleDrive.saved_session(current_user.google_accounts.first.session, nil, CLIENT_ID, CLIENT_SECRET)
-    @google_docs = []
+  def list_google_docs
+    google_session = get_google_session
+    @files = []
     for file in google_session.files
-      @google_docs  << file.title
+      @files  << file.title
     end
+
+    puts @files.inspect
   end
 
-  # def download_google_docs
-  #   file_name = params[:doc_upload]
-  #   file_path = Rails.root.join('tmp',"doc_#{file_name_session = GoogleDrive.login_with_oauth(session[:google_token])
-  #                                    file = google_session.file_by_title(file_name)
-  #                                    file.download_to_file(file_path)
-  #                                    redirect_to list_google_doc_path
-  # end
+  def get_google_session
+    client = Google::APIClient.new
+    auth = client.authorization
+
+    auth.client_id = GOOGLE_CLIENT_ID
+    auth.client_secret = GOOGLE_CLIENT_SECRET
+    auth.scope ='https://www.googleapis.com/auth/drive'
+    auth.grant_type = 'refresh_token'
+
+    auth.redirect_uri = GOOGLE_CLIENT_REDIRECT_URI
+
+    auth.refresh_token = current_user.google_accounts.last.session
+    grant = auth.refresh!
+    google_session = GoogleDrive.login_with_oauth(grant['access_token'])
+    google_session
+  end
+
+  def download_google_docs
+    file_name = params[:doc_upload]
+    token = current_user.google_accounts.last.session
+    google_session = get_google_session
+
+    file = google_session.file_by_title(file_name)
+
+    file_path = Rails.root.join('public',"#{file_name}")
+   file.download_to_file(file_path)
+    send_file File.open(file_path)
+   # redirect_to list_google_doc_path
+  end
 
    def set_google_drive_token
-
-     google_doc = GoogleDrive::GoogleDocs.new(GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,
-                                              GOOGLE_CLIENT_REDIRECT_URI)
-     oauth_client = google_doc.create_google_client
-     auth_token = oauth_client.auth_code.get_token(params[:code],
-                                                   :redirect_uri => GOOGLE_CLIENT_REDIRECT_URI)
-
-     current_user.google_accounts << GoogleAccount.new(session: params[:code]) if oauth_token
+     auth_token = exchange_code(params[:code])
+     current_user.google_accounts << GoogleAccount.new(session: auth_token.refresh_token) if auth_token
 
      redirect_to list_google_doc_path
    end
 
    def google_drive_login
-     # session[:google_token] = nil
        google_drive = GoogleDrive::GoogleDocs.new(GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,
                                                   GOOGLE_CLIENT_REDIRECT_URI)
        auth_url = google_drive.set_google_authorize_url
        redirect_to auth_url
    end
+
+  def exchange_code(authorization_code)
+    client = Google::APIClient.new
+    client.authorization.client_id = GOOGLE_CLIENT_ID
+    client.authorization.client_secret = GOOGLE_CLIENT_SECRET
+    client.authorization.code = authorization_code
+    client.authorization.redirect_uri = GOOGLE_CLIENT_REDIRECT_URI
+
+    client.authorization.fetch_access_token!
+    client.authorization
+  end
+
 end

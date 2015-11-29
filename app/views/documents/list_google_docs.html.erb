@@ -1,7 +1,44 @@
-<div>Select The document You want to Download</div>
-<%= form_tag download_google_doc_path do %>
-  <% @google_docs.each do |doc|%>
-    <div><%=radio_button_tag 'doc_upload', doc %> &nbsp;<%=doc%></div>
-  <%end%>
-  <%= submit_tag 'Download' %>
-<%end%>
+<script type="text/javascript">
+  var d = document.getElementById("goog");
+  d.className = d.className + " active";
+
+  $(document).ready(function(){
+    $('.myTable').DataTable();
+  });
+</script>
+
+<%#= link_to "Add New", new_cloud_path, :class => "btn btn-info pull-right" %>
+<%= link_to "Connect to Gooogle Drive", google_drive_login_path, {:class => "dropbox-connect btn btn-success pull-right"} %>
+
+
+<%# @clients.each_with_index do |client, i| %>
+  <h2> Account # <%= 1 %> </h2>
+
+  <table id="" class="hover myTable" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+    </tfoot>
+    <tbody>
+      <% @files.each do |file| %>
+        <tr>
+          <td><%=file%></td>
+          <td>
+            <%= form_tag download_google_doc_path do %>
+              <%=hidden_field_tag 'doc_upload', file%>
+              <%= submit_tag 'Download' %>
+            <%end%>
+          </td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+<% #end %>

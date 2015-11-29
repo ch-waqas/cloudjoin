@@ -21,12 +21,11 @@ module GoogleDrive
     def set_google_authorize_url
       client = create_google_client
       client.auth_code.authorize_url(
+          :approval_prompt => :force,
           :redirect_uri => @redirect_uri,
           :access_type => "offline",
           :scope =>
-              "https://docs.google.com/feeds/ " +
-                  "https://docs.googleusercontent.com/ " +
-                  "https://spreadsheets.google.com/feeds/")
+              'https://www.googleapis.com/auth/drive')
     end
 
   end

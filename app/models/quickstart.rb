@@ -50,7 +50,7 @@ file.update_from_file("/path/to/hello.txt")
 # def authorize
 #   FileUtils.mkdir_p(File.dirname(CREDENTIALS_PATH))
 #
-#   file_store = Google::APIClient::FileStore.new(CREDENTIALS_PATH)
+#   file_store = Google::APIClient::`FileStore`.new(CREDENTIALS_PATH)
 #   storage = Google::APIClient::Storage.new(file_store)
 #   auth = storage.authorize
 #

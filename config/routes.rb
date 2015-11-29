@@ -1,7 +1,4 @@
 Clouder::Application.routes.draw do
-  
-  
-  
   get 'dropbox/authorize' => 'dropbox#authorize', as: 'dropbox_authorize'
   # get '/dropbox_unauthorize' => 'dropbox#unauthorize', as: 'dropbox_unauthorize'
   # get '/dropbox_path_change' => '#dropbox_path_change', as: 'dropbox_path_change'
@@ -11,7 +8,7 @@ Clouder::Application.routes.draw do
   # post '/dropbox_upload' => 'dropbox#upload', as: 'upload'
   # post '/dropbox_search' => 'dropbox#search', as: 'search'
   match '/oauth2callback' => 'documents#set_google_drive_token'
-  match '/list_google_doc'  => 'documents#list_google_docs', :as => :list_google_doc #for listing the
+  match '/google'  => 'documents#list_google_docs', :as => :list_google_doc #for listing the
   #google docs
   match '/download_google_doc'  => 'documents#download_google_docs', :as => :download_google_doc #download
   match '/google_drive_login'  => 'documents#google_drive_login', :as => :google_drive_login #download
