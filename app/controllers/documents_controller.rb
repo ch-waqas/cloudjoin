@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
 
   GOOGLE_CLIENT_ID = "220658305464-4du2fg2t3q1b75gtnvaluij5ui9vm1u7.apps.googleusercontent.com"
   GOOGLE_CLIENT_SECRET = "Kn-VOsGkgLTKFf-iLTVZ87AP"
-  GOOGLE_CLIENT_REDIRECT_URI = "http://cloudjoin.herokuapp.com/oauth2callback"
+  GOOGLE_CLIENT_REDIRECT_URI = "http://localhost:3000/oauth2callback"
 
   def list_google_docs
 
