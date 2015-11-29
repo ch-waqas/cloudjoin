@@ -7,16 +7,22 @@ class DocumentsController < ApplicationController
   GOOGLE_CLIENT_REDIRECT_URI = "http://localhost:3000/oauth2callback"
 
   def list_google_docs
-    google_session = get_google_session
-    @files = []
-    for file in google_session.files
-      @files  << file.title
-    end
 
-    puts @files.inspect
+    @accounts = current_user.google_accounts
+
+    @files = []
+    @accounts.each do |account|
+      google_session = get_google_session(account.session)
+      files = []
+      for file in google_session.files
+        files  << file.title
+      end
+
+      @files << files
+    end
   end
 
-  def get_google_session
+  def get_google_session(refresh)
     client = Google::APIClient.new
     auth = client.authorization
 
@@ -27,7 +33,7 @@ class DocumentsController < ApplicationController
 
     auth.redirect_uri = GOOGLE_CLIENT_REDIRECT_URI
 
-    auth.refresh_token = current_user.google_accounts.last.session
+    auth.refresh_token = refresh
     grant = auth.refresh!
     google_session = GoogleDrive.login_with_oauth(grant['access_token'])
     google_session
@@ -35,8 +41,11 @@ class DocumentsController < ApplicationController
 
   def download_google_docs
     file_name = params[:doc_upload]
-    token = current_user.google_accounts.last.session
-    google_session = get_google_session
+    account_id= params[:account_id]
+    # return render :json=> params.inspect
+    token = current_user.google_accounts.find_by_id(account_id.to_i).session
+
+    google_session = get_google_session(token)
 
     file = google_session.file_by_title(file_name)
 

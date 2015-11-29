@@ -11,14 +11,14 @@
 <%= link_to "Connect to Gooogle Drive", google_drive_login_path, {:class => "dropbox-connect btn btn-success pull-right"} %>
 
 
-<%# @clients.each_with_index do |client, i| %>
-  <h2> Account # <%= 1 %> </h2>
+<% @accounts.each_with_index do |account,i| %>
+  <h2> Account # <%= i+1 %> </h2>
 
   <table id="" class="hover myTable" cellspacing="0" width="100%">
     <thead>
     <tr>
-      <th>Name</th>
-      <th>Actions</th>
+      <th width="80%">Name</th>
+      <th width="20%">Actions</th>
     </tr>
     </thead>
     <tfoot>
@@ -28,12 +28,13 @@
     </tr>
     </tfoot>
     <tbody>
-      <% @files.each do |file| %>
+      <% @files[i].each do |file| %>
         <tr>
           <td><%=file%></td>
           <td>
             <%= form_tag download_google_doc_path do %>
-              <%=hidden_field_tag 'doc_upload', file%>
+              <%=hidden_field_tag 'doc_upload', file %>
+              <%=hidden_field_tag 'account_id', account.id %>
               <%= submit_tag 'Download' %>
             <%end%>
           </td>
@@ -41,4 +42,4 @@
       <%end%>
     </tbody>
   </table>
-<% #end %>
+<% end %>
