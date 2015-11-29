@@ -10,6 +10,9 @@
 <%#= link_to "Add New", new_cloud_path, :class => "btn btn-info pull-right" %>
 <%= link_to "Connect to Gooogle Drive", google_drive_login_path, {:class => "dropbox-connect btn btn-success pull-right"} %>
 
+<% if @accounts.count < 1%>
+    <h2>Connect some account to view and manage its files...</h2>
+<% end %>
 
 <% @accounts.each_with_index do |account,i| %>
   <h2> Account # <%= i+1 %> </h2>

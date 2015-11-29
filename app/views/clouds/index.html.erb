@@ -9,17 +9,22 @@
 
     <%#= link_to "Add New", new_cloud_path, :class => "btn btn-info pull-right" %>
     <%= link_to "Connect to Dropbox", dropbox_authorize_path, {:class => "dropbox-connect btn btn-success pull-right"} %>
-
+<% if @clients.count < 1%>
+    <h2>Connect some account to view and manage its files...</h2>
+<% end %>
 
 <% @clients.each_with_index do |client, i| %>
     <h2> Account # <%= i+1 %> </h2>
-  <%= form_tag(dropbox_upload_path, method: :post, multipart: true) do %>
-    <div class="pull-right">
-      <%= file_field_tag :upload_file %>
-      <%= hidden_field_tag 'account_id', @accounts[i].id %>
-      <%= submit_tag 'Upload File', name: 'upload_g', class: 'pull-right' %>
-    </div>
-  <% end %>
+    <div class="pull-right" style="width:40%">  
+      <%= form_tag(dropbox_upload_path, method: :post, multipart: true, class: 'form-inline') do %>
+          <div class="form-group">
+            <%= file_field_tag :upload_file %>
+          </div>
+          <%= hidden_field_tag 'account_id', @accounts[i].id %>
+          <%= submit_tag 'Upload File', name: 'upload_g', class: 'pull-right' %>
+      <% end %>
+    </div>  
+    </br>
 
     <table id="" class="hover myTable" cellspacing="0" width="100%">
         <thead>
