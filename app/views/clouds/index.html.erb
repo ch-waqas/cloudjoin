@@ -65,4 +65,8 @@
             <%end%>
         </tbody>
     </table>
+
+
+
+    <%= button_to "Remove Account", documentsdropbox_path(:id => account.id), :method => :delete, :class => 'btn btn-danger' %>
 <% end %>

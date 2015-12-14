@@ -22,6 +22,14 @@ class DocumentsController < ApplicationController
     end
   end
 
+            def destroy
+            @acc  = current_user.google_accounts.find(params[:id])
+            @acc.destroy
+
+           redirect_to :back
+          end
+
+
   def get_google_session(refresh)
     client = Google::APIClient.new
     auth = client.authorization

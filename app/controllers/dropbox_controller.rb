@@ -12,6 +12,14 @@ class DropboxController < ApplicationController
 		redirect_to dbsession.get_authorize_url url_for(:action => 'dropbox_callback')
 	end
 	 
+			def destroy
+            @acc  = current_user.dropbox_accounts.find(params[:id])
+            @acc.destroy
+
+          	 redirect_to :back
+         	 end
+
+
 	# @Params : None
 	# # @Return : None
 	# # @Purpose : To callback for dropbox authorization

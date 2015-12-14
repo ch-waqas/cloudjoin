@@ -45,4 +45,7 @@
       <%end%>
     </tbody>
   </table>
-<% end %>
+
+  <%= button_to "Remove Account", documents_path(:id => account.id), :method => :delete, :class => 'btn btn-danger' %>
+
+<% end %>   
