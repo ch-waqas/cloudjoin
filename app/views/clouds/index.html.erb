@@ -68,5 +68,5 @@
 
 
 
-    <%= button_to "Remove Account", documentsdropbox_path(:id => account.id), :method => :delete, :class => 'btn btn-danger' %>
+    <%= button_to "Remove Account", documentsdropbox_path(:id => @accounts[i].id), :method => :delete, :class => 'btn btn-danger' %>
 <% end %>

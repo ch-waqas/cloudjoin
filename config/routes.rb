@@ -16,7 +16,7 @@ Clouder::Application.routes.draw do
   devise_for :users, path: '', path_names: {sign_up: "signup", sign_in: "login", sign_out: "logout"}
 
 delete 'documents' => 'documents#destroy'
-delete 'documentsdropbox' => 'dropbox_controller#destroy'
+delete 'documentsdropbox' => 'dropbox#destroy'
 
 
   # The priority is based upon order of creation:
